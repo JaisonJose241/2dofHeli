@@ -97,10 +97,10 @@ def plotData():
 
         # check for invalid content
         try:
-            setpointPitch = int(setpoint_TBPitch.text)
-            P_TBPitchVal  = int(P_TBPitch.text)
-            I_TBPitchVal  = int(I_TBPitch.text)
-            D_TBPitchVal  = int(D_TBPitch.text)
+            setpointPitch = float(setpoint_TBPitch.text)
+            P_TBPitchVal  = float(P_TBPitch.text)
+            I_TBPitchVal  = float(I_TBPitch.text)
+            D_TBPitchVal  = float(D_TBPitch.text)
         except:
             setpointPitch = 0
             P_TBPitchVal  = 0
@@ -108,10 +108,10 @@ def plotData():
             D_TBPitchVal  = 0
 
         try:
-            setpointYaw = int(setpoint_TBYaw.text)
-            P_TBYawVal  = int(P_TBYaw.text)
-            I_TBYawVal  = int(I_TBYaw.text)
-            D_TBYawVal  = int(D_TBYaw.text)
+            setpointYaw = float(setpoint_TBYaw.text)
+            P_TBYawVal  = float(P_TBYaw.text)
+            I_TBYawVal  = float(I_TBYaw.text)
+            D_TBYawVal  = float(D_TBYaw.text)
         except:
             setpointYaw = 0
             P_TBYawVal  = 0
