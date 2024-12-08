@@ -42,22 +42,24 @@ def plotData():
     ax = fig.add_axes([0.2, 0.65, 0.7, 0.3])
 
     # Plot initialization
-    line, = ax.plot([], [], color='b')  # Create an empty line
-    errorLineP, = ax.plot([], [], color='r')  # Create an empty line
+    line, = ax.plot([], [], color='b', label="setpoint")  # Create an empty line
+    errorLineP, = ax.plot([], [], color='r', label="Pitch")  # Create an empty line
     ax.set_xlim(0, 5)  # Initial x-axis range
-    ax.set_ylim(0, 100)  # range (0-100%)
+    ax.set_ylim(0, 100) 
     ax.set_xlabel("Time (s)")
-    ax.set_ylabel("Error (m)")
-    ax.set_title("Pitch Error vs Time")
+    ax.set_ylabel("Pitch")
+    ax.set_title("Pitch vs Time")
+    ax.legend()
 
     ax2 = fig.add_axes([0.2, 0.15, 0.7, 0.3])
-    line2, = ax2.plot([], [], color='b')  # Create an empty line
-    errorLineY, = ax2.plot([], [], color='r')  # Create an empty line
+    line2, = ax2.plot([], [], color='b', label="setpoint")  # Create an empty line
+    errorLineY, = ax2.plot([], [], color='r', label="Yaw")  # Create an empty line
     ax2.set_xlim(0, 5)  # Initial x-axis range
-    ax2.set_ylim(0, 100)  # range (0-100%)
+    ax2.set_ylim(0, 100)  
     ax2.set_xlabel("Time (s)")
-    ax2.set_ylabel("Error (m)")
-    ax2.set_title("Yaw Error vs Time")
+    ax2.set_ylabel("Yaw")
+    ax2.set_title("Yaw vs Time")
+    ax2.legend()
 
     # Add a button to the plot
     ax_button = plt.axes([0.92, 0.92, 0.05, 0.04])  # Position of the button: [left, bottom, width, height]
@@ -128,13 +130,20 @@ def plotData():
         # error line update
         PerrorList.append(Perror)
         YerrorList.append(Yerror)
-        
+
         errorLineP.set_data(x, Perror)
         errorLineY.set_data(x, Yerror)
 
         # Dynamically adjust axis limits
-        ax.set_xlim(left = max(0, time_val-2), right = time_val+0.1)
-        ax2.set_xlim(left = max(0, time_val-2), right = time_val+0.1)
+        ax.set_xlim(left = max(0, time_val-2), 
+                    right = time_val+0.1)
+        ax.set_ylim(top = max(max(y1[-20:])+1, max(PerrorList[-20:])+1), 
+                    bottom = min(min(y1[-20:])-1, min(PerrorList[-20:])-1))
+
+        ax2.set_xlim(left = max(0, time_val-2), 
+                     right = time_val+0.1)
+        ax2.set_ylim(top = max(max(y2[-20:])+1, max(YerrorList[-20:])+1), 
+                     bottom = min(min(y2[-20:])-1, min(YerrorList[-20:])-1))
 
         # Redraw the canvas
         fig.canvas.draw()
