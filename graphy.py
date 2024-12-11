@@ -131,8 +131,8 @@ def plotData():
         PerrorList.append(Perror)
         YerrorList.append(Yerror)
 
-        errorLineP.set_data(x, Perror)
-        errorLineY.set_data(x, Yerror)
+        errorLineP.set_data(x, PerrorList)
+        errorLineY.set_data(x, YerrorList)
 
         # Dynamically adjust axis limits
         ax.set_xlim(left = max(0, time_val-2), 
